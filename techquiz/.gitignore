@@ -1,0 +1,30 @@
+# Build artifacts
+/build
+/.gradle
+/.kotlin
+/captures
+/assetPackaging.log
+/lint
+/lint-results.xml
+/lint-results_files
+/repo
+/test-results
+/reports
+/test-reports
+/build-cache
+/output.json
+.externalNativeBuild
+.cxx
+
+# IDE settings
+.idea
+*.iml
+.DS_Store
+.navigation
+
+# Local configuration
+/local.properties
+*.keystore
+
+# Gradle
+!gradle-wrapper.jar

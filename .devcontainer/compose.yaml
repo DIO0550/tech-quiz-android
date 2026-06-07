@@ -1,0 +1,33 @@
+services:
+  android:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # ホストのユーザーIDに合わせるとファイル所有権のズレを防げる
+        USER_UID: "${UID:-1000}"
+        USER_GID: "${GID:-1000}"
+    # プロジェクトをマウント（ホストの Android Studio と同じフォルダを共有）
+    volumes:
+      - ../:/workspace:cached
+      # SDK 本体はイメージに焼かず volume に永続化（イメージ軽量・再ビルド高速）
+      - android-sdk:/opt/android-sdk
+      # Gradle キャッシュはホストと分離（同時アクセスのロック衝突を回避）
+      - gradle-cache:/home/dev/.gradle
+    environment:
+      ANDROID_HOME: /opt/android-sdk
+      ANDROID_SDK_ROOT: /opt/android-sdk
+      # キャッシュをマウント先に固定
+      GRADLE_USER_HOME: /home/dev/.gradle
+      # コンテナのメモリ制限内に収める。JVM にコンテナ環境を認識させ OOM を防ぐ。
+      # mem_limit を変える場合は Xmx もあわせて調整すること（下の目安参照）。
+      GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx3072m -XX:MaxMetaspaceSize=768m -XX:+UseContainerSupport"
+    # コンテナのメモリ上限。4GB に対し Xmx 3072m + Metaspace 768m + 余裕 で収める。
+    mem_limit: 4g
+    working_dir: /workspace
+    # adb はホスト側で行うため、デバイス共有やネットワーク特権は付けない（ビルド専用）
+    command: sleep infinity
+
+volumes:
+  android-sdk:
+  gradle-cache:
