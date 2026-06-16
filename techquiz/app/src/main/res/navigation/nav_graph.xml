@@ -3,35 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.dio0550.tech_quiz.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/homeFragment"
+        android:name="com.dio0550.tech_quiz.HomeFragment"
+        android:label="学習"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-
-        <action
-            android:id="@+id/action_FirstFragment_to_QuizFragment"
-            app:destination="@id/QuizFragment" />
+            android:id="@+id/action_home_to_quiz"
+            app:destination="@id/quizFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/QuizFragment"
-        android:name="com.dio0550.tech_quiz.QuizFragment"
-        android:label="Quiz"
-        tools:layout="@layout/fragment_quiz" />
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.dio0550.tech_quiz.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
 
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.dio0550.tech_quiz.QuizFragment"
+        android:label="出題"
+        tools:layout="@layout/fragment_quiz">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_quiz_to_explain"
+            app:destination="@id/explainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/explainFragment"
+        android:name="com.dio0550.tech_quiz.ExplainFragment"
+        android:label="解説"
+        tools:layout="@layout/fragment_explain">
+        <action
+            android:id="@+id/action_explain_to_quiz"
+            app:destination="@id/quizFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_explain_to_summary"
+            app:destination="@id/summaryFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/summaryFragment"
+        android:name="com.dio0550.tech_quiz.SummaryFragment"
+        android:label="結果"
+        tools:layout="@layout/fragment_summary">
+        <action
+            android:id="@+id/action_summary_to_quiz"
+            app:destination="@id/quizFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>
