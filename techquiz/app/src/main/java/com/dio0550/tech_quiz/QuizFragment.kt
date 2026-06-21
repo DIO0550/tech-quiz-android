@@ -1,5 +1,6 @@
 package com.dio0550.tech_quiz
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -83,12 +84,6 @@ class QuizFragment : Fragment() {
     }
 
     private fun updateUi(state: com.dio0550.tech_quiz.ui.QuizUiState) {
-        val current = state.current
-        if (current == null) return
-
-        binding.textProgress.text = "Question ${state.currentIndex + 1} / ${state.items.size}"
-        binding.textQuestion.text = current.question.text
-
         val buttons = listOf(
             binding.buttonChoice1,
             binding.buttonChoice2,
@@ -96,26 +91,41 @@ class QuizFragment : Fragment() {
             binding.buttonChoice4
         )
 
-        current.choices.forEachIndexed { index, choice ->
-            buttons[index].text = choice
-            buttons[index].isEnabled = !state.isAnswered
-            
-            // Reset colors
-            buttons[index].setBackgroundColor(ContextCompat.getColor(requireContext(), com.google.android.material.R.color.design_default_color_primary))
+        if (state.finished) {
+            binding.textProgress.text = "Question ${state.items.size} / ${state.items.size}"
+            binding.textQuestion.text = "Quiz Finished!\nCorrect: ${state.correctCount} / ${state.items.size}"
+            binding.layoutChoices.visibility = View.GONE
+            binding.buttonNext.text = "Back to Home"
+            binding.buttonNext.visibility = View.VISIBLE
+            binding.textResultFeedback.visibility = View.GONE
+            return
         }
 
-        if (state.isAnswered) {
-            val selectedIndex = state.selectedIndex!!
+        val current = state.current ?: return
+        val defaultButtonColor = ContextCompat.getColor(requireContext(), com.google.android.material.R.color.design_default_color_primary)
+
+        binding.layoutChoices.visibility = View.VISIBLE
+        binding.textProgress.text = "Question ${state.currentIndex + 1} / ${state.items.size}"
+        binding.textQuestion.text = current.question.text
+
+        buttons.forEachIndexed { index, button ->
+            button.visibility = if (index < current.choices.size) View.VISIBLE else View.GONE
+            button.text = current.choices.getOrNull(index).orEmpty()
+            button.isEnabled = !state.isAnswered
+            button.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+        }
+
+        val selectedIndex = state.selectedIndex
+        if (selectedIndex != null) {
             val isCorrect = current.isCorrect(selectedIndex)
-            
-            buttons[selectedIndex].setBackgroundColor(if (isCorrect) Color.GREEN else Color.RED)
-            
-            // If incorrect, highlight the correct one
-            if (!isCorrect) {
-                val correctIdxInCurrent = current.choices.indexOf(current.question.choices[current.question.correctIndex])
-                if (correctIdxInCurrent != -1) {
-                    buttons[correctIdxInCurrent].setBackgroundColor(Color.GREEN)
-                }
+
+            buttons.getOrNull(selectedIndex)?.backgroundTintList =
+                ColorStateList.valueOf(if (isCorrect) Color.GREEN else Color.RED)
+
+            val correctChoice = current.question.choices.getOrNull(current.question.correctIndex)
+            val correctIdxInCurrent = current.choices.indexOf(correctChoice)
+            if (!isCorrect && correctIdxInCurrent != -1) {
+                buttons.getOrNull(correctIdxInCurrent)?.backgroundTintList = ColorStateList.valueOf(Color.GREEN)
             }
 
             binding.textResultFeedback.visibility = View.VISIBLE
@@ -127,14 +137,6 @@ class QuizFragment : Fragment() {
         } else {
             binding.textResultFeedback.visibility = View.GONE
             binding.buttonNext.visibility = View.GONE
-        }
-
-        if (state.finished) {
-            binding.textQuestion.text = "Quiz Finished!\nCorrect: ${state.correctCount} / ${state.items.size}"
-            binding.layoutChoices.visibility = View.GONE
-            binding.buttonNext.text = "Back to Home"
-            binding.buttonNext.visibility = View.VISIBLE
-            binding.textResultFeedback.visibility = View.GONE
         }
     }
 
