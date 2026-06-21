@@ -1,15 +1,11 @@
 {
   "name": "tech-quiz Android Dev Container",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
+  "dockerComposeFile": "compose.yaml",
+  "service": "android",
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "esbenp.prettier-vscode",
-        "fwcd.kotlin",
-        "vscjava.vscode-gradle"
-      ],
+      "extensions": ["esbenp.prettier-vscode", "vscjava.vscode-gradle"],
       "settings": {
         "editor.formatOnSave": true
       }
