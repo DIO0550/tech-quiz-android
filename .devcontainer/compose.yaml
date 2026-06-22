@@ -1,5 +1,6 @@
 services:
   android:
+    image: tech-quiz-android:dev
     build:
       context: .
       dockerfile: Dockerfile

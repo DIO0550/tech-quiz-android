@@ -2,4 +2,32 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- ===== TechQuiz「③集中 / ミニマル」design tokens (dir-c) ===== -->
+    <color name="primary">#006A60</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#9FF2E1</color>
+    <color name="on_primary_container">#00201C</color>
+
+    <color name="tertiary">#735C00</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="tertiary_container">#FFE08C</color>
+    <color name="on_tertiary_container">#231B00</color>
+
+    <color name="success">#1F6B4F</color>
+    <color name="success_container">#B6F1CF</color>
+    <color name="on_success_container">#00210F</color>
+
+    <color name="error">#BA1A1A</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="on_error_container">#410002</color>
+
+    <color name="surface">#FBFDFB</color>
+    <color name="surface_cl">#F4F7F4</color>
+    <color name="surface_c">#EEF1EF</color>
+    <color name="surface_ch">#E7EBE8</color>
+    <color name="on_surface">#171D1B</color>
+    <color name="on_surface_var">#3F4946</color>
+    <color name="outline">#6F7976</color>
+    <color name="outline_var">#D6E0DB</color>
 </resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="14dp">
+
+        <ImageView
+            android:id="@+id/cat_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/primary"
+            android:src="@drawable/ic_cat_lan"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/cat_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:textColor="@color/on_surface"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:fontFamily="sans-serif-medium"
+            tools:text="ネットワーク" />
+
+        <ProgressBar
+            android:id="@+id/cat_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="64dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="12dp"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_track"
+            tools:progress="80" />
+
+        <TextView
+            android:id="@+id/cat_pct"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="@color/on_surface_var"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium"
+            tools:text="81%" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/cat_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/outline_var" />
+</LinearLayout>
