@@ -64,7 +64,7 @@ fun buildKwText(context: Context, raw: String): CharSequence {
     val kwColor = ContextCompat.getColor(context, R.color.primary)
     val sb = SpannableStringBuilder()
     var rest = raw
-    val regex = Regex("""\{kw}(.*?)\{/kw}""")
+    val regex = Regex("""\{kw\}(.*?)\{/kw\}""")
     while (true) {
         val m = regex.find(rest) ?: break
         sb.append(rest.substring(0, m.range.first))

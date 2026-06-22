@@ -21,6 +21,7 @@ class QuizFragment : Fragment() {
     private var _binding: FragmentQuizBinding? = null
     private val binding get() = _binding!!
     private val viewModel: QuizViewModel by activityViewModels()
+    private var isNavigatingToExplain = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,14 +37,12 @@ class QuizFragment : Fragment() {
         binding.buttonClose.setOnClickListener {
             findNavController().popBackStack(R.id.homeFragment, false)
         }
-        binding.buttonAnswer.setOnClickListener {
-            viewModel.confirm()
-            findNavController().navigate(R.id.action_quiz_to_explain)
-        }
+        binding.footerAnswer.visibility = View.GONE
         render()
     }
 
     private fun render() {
+        isNavigatingToExplain = false
         val q = viewModel.current ?: return
         val s = viewModel.state.value
 
@@ -66,21 +65,28 @@ class QuizFragment : Fragment() {
             item.optionLabel.text = o.label
             item.root.applyOptionMode(if (i == s.selected) OptionMode.SELECTED else OptionMode.DEFAULT)
             item.root.setOnClickListener {
-                viewModel.pick(i)
-                refreshSelection()
+                answer(i)
             }
             binding.layoutOptions.addView(item.root)
         }
-        binding.buttonAnswer.isEnabled = s.selected != null
     }
 
-    private fun refreshSelection() {
-        val sel = viewModel.state.value.selected
+    private fun answer(index: Int) {
+        if (isNavigatingToExplain) return
+        isNavigatingToExplain = true
+
+        viewModel.pick(index)
+        viewModel.confirm()
         for (i in 0 until binding.layoutOptions.childCount) {
-            binding.layoutOptions.getChildAt(i)
-                .applyOptionMode(if (i == sel) OptionMode.SELECTED else OptionMode.DEFAULT)
+            val option = binding.layoutOptions.getChildAt(i)
+            option.isEnabled = false
+            option.applyOptionMode(if (i == index) OptionMode.SELECTED else OptionMode.DEFAULT)
         }
-        binding.buttonAnswer.isEnabled = sel != null
+
+        val navController = findNavController()
+        if (navController.currentDestination?.id == R.id.quizFragment) {
+            navController.navigate(R.id.action_quiz_to_explain)
+        }
     }
 
     override fun onDestroyView() {
