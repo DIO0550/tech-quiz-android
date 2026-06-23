@@ -1,0 +1,424 @@
+{
+  "questions": [
+    {
+      "id": "db-select-where",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "表 users から age が 20 以上の行だけを取得するSQL文として適切なものはどれか。",
+      "options": [
+        "SELECT * FROM users WHERE age >= 20;",
+        "SELECT * FROM users HAVING age >= 20;",
+        "GET * FROM users WHERE age >= 20;",
+        "SELECT users WHERE age >= 20;"
+      ],
+      "correct": 0,
+      "explanationBody": "行を条件で絞り込むには{kw}WHERE句{/kw}を使う。HAVING句は集計後のグループに対する条件指定で使う。",
+      "points": [
+        {
+          "term": "SELECT",
+          "desc": "取得する列を指定する。"
+        },
+        {
+          "term": "FROM",
+          "desc": "取得元の表を指定する。"
+        },
+        {
+          "term": "WHERE",
+          "desc": "行単位の抽出条件を指定する。"
+        }
+      ]
+    },
+    {
+      "id": "db-order-by",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "表 products を price の高い順に並べるSQL文として適切なものはどれか。",
+      "options": [
+        "SELECT * FROM products ORDER BY price DESC;",
+        "SELECT * FROM products ORDER BY price ASC;",
+        "SELECT * FROM products GROUP BY price DESC;",
+        "SELECT * FROM products SORT price DESC;"
+      ],
+      "correct": 0,
+      "explanationBody": "並べ替えにはORDER BYを使う。降順は{kw}DESC{/kw}、昇順はASCで指定する。",
+      "points": [
+        {
+          "term": "ORDER BY",
+          "desc": "結果の表示順を指定する。"
+        },
+        {
+          "term": "ASC",
+          "desc": "昇順。省略時の既定になることが多い。"
+        },
+        {
+          "term": "DESC",
+          "desc": "降順。大きい値から並ぶ。"
+        }
+      ]
+    },
+    {
+      "id": "db-count",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "表 orders の行数を数えるSQL文として適切なものはどれか。",
+      "options": [
+        "SELECT COUNT(*) FROM orders;",
+        "SELECT SUM(*) FROM orders;",
+        "COUNT orders;",
+        "SELECT TOTAL FROM orders;"
+      ],
+      "correct": 0,
+      "explanationBody": "行数を数える集約関数は{kw}COUNT(*){/kw}である。条件を付ける場合はWHERE句を組み合わせる。",
+      "points": [
+        {
+          "term": "COUNT(列名)",
+          "desc": "NULLでない値の件数を数える。"
+        },
+        {
+          "term": "SUM",
+          "desc": "数値の合計を求める。"
+        },
+        {
+          "term": "集約関数",
+          "desc": "COUNT、SUM、AVG、MAX、MINなど。"
+        }
+      ]
+    },
+    {
+      "id": "db-group-by",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "sales表で department ごとの売上合計を求めるSQL文として適切なものはどれか。",
+      "options": [
+        "SELECT department, SUM(amount) FROM sales GROUP BY department;",
+        "SELECT department, SUM(amount) FROM sales ORDER BY department;",
+        "SELECT department, amount FROM sales GROUP BY amount;",
+        "SELECT SUM(department) FROM sales;"
+      ],
+      "correct": 0,
+      "explanationBody": "部門ごとのように同じ値をまとめて集計するには{kw}GROUP BY{/kw}を使い、売上合計はSUM(amount)で求める。",
+      "points": [
+        {
+          "term": "GROUP BY",
+          "desc": "指定列の値ごとに行をまとめる。"
+        },
+        {
+          "term": "SUM",
+          "desc": "数値の合計を求める。"
+        },
+        {
+          "term": "ORDER BY",
+          "desc": "並べ替えであり、集計の単位は作らない。"
+        }
+      ]
+    },
+    {
+      "id": "db-having",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "部署ごとの平均給与を求め、平均給与が30万円以上の部署だけを表示する場合に使う句はどれか。",
+      "options": [
+        "HAVING",
+        "WHERE",
+        "ORDER BY",
+        "LIMIT"
+      ],
+      "correct": 0,
+      "explanationBody": "集計した結果に条件を付けるには{kw}HAVING句{/kw}を使う。WHERE句は集計前の行を絞り込む。",
+      "points": [
+        {
+          "term": "WHERE",
+          "desc": "行単位の条件。"
+        },
+        {
+          "term": "HAVING",
+          "desc": "グループ化・集計後の条件。"
+        },
+        {
+          "term": "AVG",
+          "desc": "平均値を求める集約関数。"
+        }
+      ]
+    },
+    {
+      "id": "db-inner-join",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "customers表とorders表を顧客IDが一致する行だけ結合して取得する結合はどれか。",
+      "options": [
+        "INNER JOIN",
+        "LEFT OUTER JOIN",
+        "CROSS JOIN",
+        "FULL OUTER JOIN"
+      ],
+      "correct": 0,
+      "explanationBody": "{kw}INNER JOIN{/kw}は、結合条件に一致する行だけを結果に含める結合である。",
+      "points": [
+        {
+          "term": "LEFT OUTER JOIN",
+          "desc": "左表の行を残し、右表にない場合はNULLになる。"
+        },
+        {
+          "term": "CROSS JOIN",
+          "desc": "直積を作る。"
+        },
+        {
+          "term": "結合条件",
+          "desc": "通常はON句で指定する。"
+        }
+      ]
+    },
+    {
+      "id": "db-left-join",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "左側の表の行をすべて残し、右側に対応する行がない場合はNULLを補う結合はどれか。",
+      "options": [
+        "LEFT OUTER JOIN",
+        "INNER JOIN",
+        "CROSS JOIN",
+        "SELF JOIN"
+      ],
+      "correct": 0,
+      "explanationBody": "{kw}LEFT OUTER JOIN{/kw}は左表の行をすべて結果に残し、右表に一致する行がない列はNULLになる。",
+      "points": [
+        {
+          "term": "INNER JOIN",
+          "desc": "一致する行だけを返す。"
+        },
+        {
+          "term": "外部結合",
+          "desc": "対応しない行も残す結合。"
+        },
+        {
+          "term": "NULL",
+          "desc": "値が存在しないことを表す。"
+        }
+      ]
+    },
+    {
+      "id": "db-primary-key",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "表の各行を一意に識別するための列または列の組はどれか。",
+      "options": [
+        "主キー",
+        "外部キー",
+        "インデックス",
+        "ビュー"
+      ],
+      "correct": 0,
+      "explanationBody": "{kw}主キー{/kw}は表の行を一意に識別する列または列の組で、原則として重複やNULLを許さない。",
+      "points": [
+        {
+          "term": "外部キー",
+          "desc": "他表の主キーなどを参照する制約。"
+        },
+        {
+          "term": "インデックス",
+          "desc": "検索を高速化するための構造。"
+        },
+        {
+          "term": "ビュー",
+          "desc": "問い合わせ結果を仮想的な表として扱うもの。"
+        }
+      ]
+    },
+    {
+      "id": "db-foreign-key",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "他の表の主キーなどを参照し、参照整合性を保つために用いる制約はどれか。",
+      "options": [
+        "外部キー制約",
+        "NOT NULL制約",
+        "UNIQUE制約",
+        "CHECK制約"
+      ],
+      "correct": 0,
+      "explanationBody": "{kw}外部キー制約{/kw}は、ある表の列が別表の主キーなど既存の値を参照するように制限し、参照整合性を保つ。",
+      "points": [
+        {
+          "term": "NOT NULL",
+          "desc": "NULLを許可しない制約。"
+        },
+        {
+          "term": "UNIQUE",
+          "desc": "列値の重複を許可しない制約。"
+        },
+        {
+          "term": "CHECK",
+          "desc": "値が条件を満たすことを確認する制約。"
+        }
+      ]
+    },
+    {
+      "id": "db-normalization",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "データの重複や更新時の不整合を減らすために、表を適切に分割・整理することを何というか。",
+      "options": [
+        "正規化",
+        "排他制御",
+        "バックアップ",
+        "レプリケーション"
+      ],
+      "correct": 0,
+      "explanationBody": "{kw}正規化{/kw}は冗長性を減らし、挿入・更新・削除時の不整合を起こしにくくするために表を整理する考え方である。",
+      "points": [
+        {
+          "term": "第1正規形",
+          "desc": "繰り返し項目をなくし、値を原子的にする。"
+        },
+        {
+          "term": "第2正規形",
+          "desc": "部分関数従属を排除する。"
+        },
+        {
+          "term": "第3正規形",
+          "desc": "推移的関数従属を排除する。"
+        }
+      ]
+    },
+    {
+      "id": "db-transaction",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "関連する複数の処理を、すべて成功させるかすべて取り消すかの単位として扱う仕組みはどれか。",
+      "options": [
+        "トランザクション",
+        "インデックス",
+        "ビュー",
+        "カーソル"
+      ],
+      "correct": 0,
+      "explanationBody": "{kw}トランザクション{/kw}は複数の処理を1つの論理的な単位として扱う。途中で失敗した場合はロールバックして整合性を保つ。",
+      "points": [
+        {
+          "term": "COMMIT",
+          "desc": "処理結果を確定する。"
+        },
+        {
+          "term": "ROLLBACK",
+          "desc": "処理結果を取り消す。"
+        },
+        {
+          "term": "原子性",
+          "desc": "全て行うか全て行わないかの性質。"
+        }
+      ]
+    },
+    {
+      "id": "db-acid",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "トランザクションのACID特性に含まれないものはどれか。",
+      "options": [
+        "可用性",
+        "原子性",
+        "一貫性",
+        "独立性"
+      ],
+      "correct": 0,
+      "explanationBody": "ACIDは原子性、一貫性、独立性、耐久性を表す。{kw}可用性{/kw}はACID特性には含まれない。",
+      "points": [
+        {
+          "term": "Atomicity",
+          "desc": "原子性。全て成功または全て失敗。"
+        },
+        {
+          "term": "Consistency",
+          "desc": "一貫性。制約を満たした状態を保つ。"
+        },
+        {
+          "term": "Durability",
+          "desc": "耐久性。確定した結果が失われにくい。"
+        }
+      ]
+    },
+    {
+      "id": "db-index",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "検索を高速化する目的で列に作成するデータ構造はどれか。",
+      "options": [
+        "インデックス",
+        "ビュー",
+        "トリガ",
+        "ストアドプロシージャ"
+      ],
+      "correct": 0,
+      "explanationBody": "{kw}インデックス{/kw}は表の検索を高速化するための構造である。ただし、更新時のコストや保存領域が増える場合がある。",
+      "points": [
+        {
+          "term": "B-tree",
+          "desc": "代表的なインデックス構造。"
+        },
+        {
+          "term": "更新コスト",
+          "desc": "INSERT、UPDATE、DELETE時にインデックス更新が必要。"
+        },
+        {
+          "term": "選択性",
+          "desc": "値の種類が多い列ほど効果が出やすい。"
+        }
+      ]
+    },
+    {
+      "id": "db-delete-truncate",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "表 employees から id が 10 の行だけを削除するSQL文として適切なものはどれか。",
+      "options": [
+        "DELETE FROM employees WHERE id = 10;",
+        "TRUNCATE employees WHERE id = 10;",
+        "DROP FROM employees WHERE id = 10;",
+        "REMOVE employees id = 10;"
+      ],
+      "correct": 0,
+      "explanationBody": "条件に一致する行を削除するには{kw}DELETE FROM ... WHERE{/kw}を使う。WHERE句を忘れると全行削除になるため注意が必要である。",
+      "points": [
+        {
+          "term": "TRUNCATE",
+          "desc": "表の全データを高速に削除する命令。条件指定は通常できない。"
+        },
+        {
+          "term": "DROP",
+          "desc": "表などのオブジェクト自体を削除する。"
+        },
+        {
+          "term": "WHERE",
+          "desc": "削除対象の行を絞り込む。"
+        }
+      ]
+    },
+    {
+      "id": "db-update",
+      "category": "データベース",
+      "categoryId": "db",
+      "text": "users表で id が 5 の利用者の name を 'Sato' に変更するSQL文として適切なものはどれか。",
+      "options": [
+        "UPDATE users SET name = 'Sato' WHERE id = 5;",
+        "ALTER users SET name = 'Sato' WHERE id = 5;",
+        "INSERT users SET name = 'Sato' WHERE id = 5;",
+        "SELECT users SET name = 'Sato' WHERE id = 5;"
+      ],
+      "correct": 0,
+      "explanationBody": "既存行の値を変更するには{kw}UPDATE ... SET ... WHERE{/kw}を使う。WHERE句を忘れると全行が更新対象になる。",
+      "points": [
+        {
+          "term": "UPDATE",
+          "desc": "既存データを更新する。"
+        },
+        {
+          "term": "SET",
+          "desc": "更新する列と値を指定する。"
+        },
+        {
+          "term": "ALTER",
+          "desc": "表定義などの構造を変更する。"
+        }
+      ]
+    }
+  ]
+}

@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun startQuiz() {
-        viewModel.start()
+        viewModel.start(requireContext())
         findNavController().navigate(R.id.action_home_to_quiz)
     }
 

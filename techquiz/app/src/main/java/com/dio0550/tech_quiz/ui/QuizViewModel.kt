@@ -1,5 +1,6 @@
 package com.dio0550.tech_quiz.ui
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.dio0550.tech_quiz.data.Question
 import com.dio0550.tech_quiz.data.QuizData
@@ -33,8 +34,8 @@ class QuizViewModel : ViewModel() {
 
     val current: Question? get() = questions.getOrNull(_state.value.index)
 
-    fun start(count: Int = 10) {
-        questions = QuizData.NETWORK_QUESTIONS.take(count)
+    fun start(context: Context, count: Int = 10) {
+        questions = QuizData.loadQuestions(context).shuffled().take(count)
         answers.clear()
         repeat(questions.size) { answers.add(null) }
         _state.value = State(index = 0, selected = null, total = questions.size)

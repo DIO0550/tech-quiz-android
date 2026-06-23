@@ -62,7 +62,7 @@ class SummaryFragment : Fragment() {
             findNavController().popBackStack(R.id.homeFragment, false)
         }
         binding.buttonRetry.setOnClickListener {
-            viewModel.start()
+            viewModel.start(requireContext())
             findNavController().navigate(R.id.action_summary_to_quiz)
         }
     }

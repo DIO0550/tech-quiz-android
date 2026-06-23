@@ -32,7 +32,7 @@ class QuizFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (viewModel.questions.isEmpty()) viewModel.start()
+        if (viewModel.questions.isEmpty()) viewModel.start(requireContext())
 
         binding.buttonClose.setOnClickListener {
             findNavController().popBackStack(R.id.homeFragment, false)
