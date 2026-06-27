@@ -733,6 +733,241 @@
           "desc": "ネットワークの制御をソフトウェアで集中管理する技術。"
         }
       ]
+    },
+    {
+      "id": "net-snmp",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "ネットワーク機器の監視・管理に用いられるプロトコルはどれか。",
+      "options": ["SMTP", "SNMP", "SSH", "NTP"],
+      "correct": 1,
+      "explanationBody": "{kw}SNMP(Simple Network Management Protocol){/kw}はルータやスイッチなどのネットワーク機器の状態を監視・管理するプロトコルで、UDP161番ポートを使用する。",
+      "points": [
+        {
+          "term": "SMTP",
+          "desc": "メール送信に用いられるプロトコル。"
+        },
+        {
+          "term": "SSH",
+          "desc": "暗号化されたリモートログインを行うプロトコル。"
+        },
+        {
+          "term": "NTP",
+          "desc": "ネットワーク経由で時刻を同期するプロトコル。"
+        }
+      ]
+    },
+    {
+      "id": "net-ssh",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "暗号化された通信路を用いてリモートホストに安全にログインできるプロトコルはどれか。",
+      "options": ["Telnet", "FTP", "SSH", "HTTP"],
+      "correct": 2,
+      "explanationBody": "{kw}SSH(Secure Shell){/kw}は通信を暗号化してリモートホストにログインし、コマンド実行やファイル転送を安全に行えるプロトコルで、TCP22番ポートを使用する。",
+      "points": [
+        {
+          "term": "Telnet",
+          "desc": "平文でリモートログインを行うため盗聴に弱い。"
+        },
+        {
+          "term": "FTP",
+          "desc": "ファイル転送用プロトコルだが認証情報も平文で送られる。"
+        },
+        {
+          "term": "HTTP",
+          "desc": "Web通信用のプロトコルで暗号化機能はない。"
+        }
+      ]
+    },
+    {
+      "id": "net-bgp",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "インターネットを構成するAS(自律システム)間で経路情報を交換するルーティングプロトコルはどれか。",
+      "options": ["RIP", "OSPF", "EIGRP", "BGP"],
+      "correct": 3,
+      "explanationBody": "{kw}BGP(Border Gateway Protocol){/kw}は異なるAS間で経路情報を交換する経路制御プロトコルで、インターネットのバックボーンを支える。",
+      "points": [
+        {
+          "term": "RIP",
+          "desc": "ホップ数を指標とする小規模ネットワーク向け距離ベクトル型プロトコル。"
+        },
+        {
+          "term": "OSPF",
+          "desc": "AS内部で用いられるリンクステート型プロトコル。"
+        },
+        {
+          "term": "EIGRP",
+          "desc": "Ciscoが開発したAS内向けの拡張型距離ベクトル型プロトコル。"
+        }
+      ]
+    },
+    {
+      "id": "net-imap",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "メールサーバ上のメールを保存したまま閲覧でき、複数の端末から同じメールボックスを操作するのに適したプロトコルはどれか。",
+      "options": ["POP3", "IMAP", "SMTP", "MIME"],
+      "correct": 1,
+      "explanationBody": "{kw}IMAP(Internet Message Access Protocol){/kw}はメールをサーバ上で管理するため、PCやスマートフォンなど複数端末から同じ受信箱に同期してアクセスできる。",
+      "points": [
+        {
+          "term": "POP3",
+          "desc": "メールをクライアント側にダウンロードして管理する方式。"
+        },
+        {
+          "term": "SMTP",
+          "desc": "メールの送信および転送に用いるプロトコル。"
+        },
+        {
+          "term": "MIME",
+          "desc": "メールで様々な形式のデータを扱うための符号化規格。"
+        }
+      ]
+    },
+    {
+      "id": "net-mtu",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "イーサネットなどのデータリンクで1フレームに格納できるペイロードの最大サイズを示すものはどれか。",
+      "options": ["MSS", "MTU", "RTT", "TTL"],
+      "correct": 1,
+      "explanationBody": "{kw}MTU(Maximum Transmission Unit){/kw}は1回の転送で送信可能な最大データサイズを表し、標準イーサネットでは1500バイトである。これを超える場合は分割(フラグメンテーション)される。",
+      "points": [
+        {
+          "term": "MSS",
+          "desc": "TCPセグメントで運べる最大データサイズで、MTUからヘッダ分を引いた値。"
+        },
+        {
+          "term": "RTT",
+          "desc": "パケットの往復にかかる時間を示す指標。"
+        },
+        {
+          "term": "TTL",
+          "desc": "パケットが破棄されるまでに通過できるホップ数の上限。"
+        }
+      ]
+    },
+    {
+      "id": "net-doh",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "DNSクエリをHTTPSの通信路に載せて暗号化し、プライバシー保護を図る技術はどれか。",
+      "options": ["DNSSEC", "DoT", "DoH", "DNSAMP"],
+      "correct": 2,
+      "explanationBody": "{kw}DoH(DNS over HTTPS){/kw}はDNSクエリをHTTPS上で送受信することで、盗聴や改ざんを防ぎ、利用者のプライバシーを保護する。",
+      "points": [
+        {
+          "term": "DNSSEC",
+          "desc": "DNS応答に電子署名を付け、応答の正当性を検証する仕組み。"
+        },
+        {
+          "term": "DoT",
+          "desc": "DNS over TLS。TLSでDNSクエリを暗号化する技術。"
+        },
+        {
+          "term": "DNSAMP",
+          "desc": "DNSを悪用した増幅型DDoS攻撃の名称。"
+        }
+      ]
+    },
+    {
+      "id": "net-traceroute",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "tracerouteコマンドが経路上のルータを順に検出するために利用する仕組みはどれか。",
+      "options": [
+        "ICMPエコー要求のチェックサムを順に変える",
+        "送信パケットのTTLを1から順に増やしていく",
+        "ARP要求をブロードキャストで繰り返す",
+        "DNSの再帰問合せを各ルータに送る"
+      ],
+      "correct": 1,
+      "explanationBody": "{kw}traceroute{/kw}はTTLを1から順に増やして送信し、TTL切れで返るICMP Time Exceededメッセージから途中のルータのIPを取得することで経路を可視化する。",
+      "points": [
+        {
+          "term": "TTL",
+          "desc": "パケットの生存可能ホップ数。0になるとルータが破棄しICMPを返す。"
+        },
+        {
+          "term": "ICMP Time Exceeded",
+          "desc": "TTL切れ時にルータが送信元へ通知するICMPメッセージ。"
+        },
+        {
+          "term": "ARP",
+          "desc": "IPアドレスからMACアドレスを解決するプロトコル。経路探索とは異なる。"
+        }
+      ]
+    },
+    {
+      "id": "net-lacp",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "複数の物理リンクを論理的に1本の高帯域リンクとして束ねる技術と、その制御プロトコルとして用いられるものはどれか。",
+      "options": ["STP", "VRRP", "LACP", "HSRP"],
+      "correct": 2,
+      "explanationBody": "{kw}LACP(Link Aggregation Control Protocol){/kw}はIEEE 802.3adで規定され、複数の物理リンクを束ねるリンクアグリゲーションの制御に用いられる。帯域拡張と冗長化を同時に実現できる。",
+      "points": [
+        {
+          "term": "STP",
+          "desc": "スイッチ間のループを防止するスパニングツリープロトコル。"
+        },
+        {
+          "term": "VRRP",
+          "desc": "デフォルトゲートウェイを冗長化する標準プロトコル。"
+        },
+        {
+          "term": "HSRP",
+          "desc": "Cisco独自のゲートウェイ冗長化プロトコル。"
+        }
+      ]
+    },
+    {
+      "id": "net-8021x",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "有線・無線LANにおいて、ポート単位でユーザを認証してからネットワーク接続を許可する規格はどれか。",
+      "options": ["IEEE 802.1X", "IEEE 802.11ac", "IEEE 802.3", "IEEE 802.1Q"],
+      "correct": 0,
+      "explanationBody": "{kw}IEEE 802.1X{/kw}はクライアント、認証装置(スイッチ/AP)、認証サーバ(RADIUS)から構成され、EAPを用いてポート単位の認証を行う。認証成功までネットワーク利用は許可されない。",
+      "points": [
+        {
+          "term": "IEEE 802.11ac",
+          "desc": "5GHz帯を用いる高速無線LAN規格。"
+        },
+        {
+          "term": "IEEE 802.3",
+          "desc": "有線イーサネットの物理層・MAC層を規定する標準。"
+        },
+        {
+          "term": "IEEE 802.1Q",
+          "desc": "VLANのタグ付けを規定する標準。"
+        }
+      ]
+    },
+    {
+      "id": "net-dmz",
+      "category": "ネットワーク",
+      "categoryId": "net",
+      "text": "インターネットと内部ネットワークの間に設けられ、外部公開サーバを配置する緩衝地帯として機能するセグメントはどれか。",
+      "options": ["VLAN", "DMZ", "VPN", "NAT"],
+      "correct": 1,
+      "explanationBody": "{kw}DMZ(DeMilitarized Zone){/kw}はファイアウォールによって内部LANから隔離された公開セグメントで、Webサーバやメールサーバなどを置く。外部からの侵入が内部に直接波及しないようにする。",
+      "points": [
+        {
+          "term": "VLAN",
+          "desc": "1台のスイッチを論理的に複数のネットワークに分割する技術。"
+        },
+        {
+          "term": "VPN",
+          "desc": "公衆網上に暗号化された仮想専用線を構築する技術。"
+        },
+        {
+          "term": "NAT",
+          "desc": "プライベートIPとグローバルIPを変換する技術。"
+        }
+      ]
     }
   ]
 }
