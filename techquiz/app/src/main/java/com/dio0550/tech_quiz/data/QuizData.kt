@@ -31,6 +31,9 @@ object QuizData {
         "questions/network.json",
         "questions/security.json",
         "questions/database.json",
+        "questions/base.json",
+        "questions/algo.json",
+        "questions/pm.json",
     )
 
     fun loadQuestions(context: Context): List<Question> {
