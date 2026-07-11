@@ -43,18 +43,20 @@ class ExplainFragment : Fragment() {
         binding.textProgress.text = getString(R.string.progress_format, s.index + 1, s.total)
 
         // verdict header
+        val sec = viewModel.lastAnswerSeconds
+        val answerTime = getString(R.string.time_format, sec / 60, sec % 60)
         if (isCorrect) {
             binding.verdictIcon.setImageResource(R.drawable.ic_check_circle)
             binding.verdictIcon.setColorFilter(color(R.color.success))
             binding.verdictText.setText(R.string.verdict_correct)
             binding.verdictText.setTextColor(color(R.color.success))
-            binding.verdictMeta.text = getString(R.string.verdict_meta_correct)
+            binding.verdictMeta.text = getString(R.string.verdict_meta_format, answerTime, 10)
         } else {
             binding.verdictIcon.setImageResource(R.drawable.ic_cancel)
             binding.verdictIcon.setColorFilter(color(R.color.error))
             binding.verdictText.setText(R.string.verdict_wrong)
             binding.verdictText.setTextColor(color(R.color.error))
-            binding.verdictMeta.text = getString(R.string.verdict_meta_wrong)
+            binding.verdictMeta.text = getString(R.string.verdict_meta_format, answerTime, 0)
         }
 
         binding.textQuestion.text = q.text

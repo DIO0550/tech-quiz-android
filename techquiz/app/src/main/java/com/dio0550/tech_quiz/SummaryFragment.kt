@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.dio0550.tech_quiz.data.QuizData
 import com.dio0550.tech_quiz.databinding.FragmentSummaryBinding
 import com.dio0550.tech_quiz.databinding.ItemBreakdownBinding
 import com.dio0550.tech_quiz.ui.QuizViewModel
@@ -44,12 +43,13 @@ class SummaryFragment : Fragment() {
         binding.textSubtitle.text = subtitleText(pct)
         binding.scoreBar.progress = pct
 
+        val elapsedSec = (viewModel.elapsedMs / 1000L).toInt()
         binding.statScore.text = getString(R.string.score_format, score, total)
-        binding.statTime.text = getString(R.string.summary_time)
-        binding.statAvg.text = getString(R.string.summary_avg)
+        binding.statTime.text = getString(R.string.time_format, elapsedSec / 60, elapsedSec % 60)
+        binding.statAvg.text = getString(R.string.seconds_format, elapsedSec / total)
 
         binding.layoutBreakdown.removeAllViews()
-        QuizData.SUMMARY_BREAKDOWN.forEach { b ->
+        viewModel.breakdown().forEach { b ->
             val item = ItemBreakdownBinding.inflate(layoutInflater, binding.layoutBreakdown, false)
             item.brName.text = b.name
             item.brBar.progress = b.pct
@@ -62,7 +62,7 @@ class SummaryFragment : Fragment() {
             findNavController().popBackStack(R.id.homeFragment, false)
         }
         binding.buttonRetry.setOnClickListener {
-            viewModel.start(requireContext())
+            viewModel.start(requireContext(), viewModel.sessionCategoryId)
             findNavController().navigate(R.id.action_summary_to_quiz)
         }
     }
@@ -81,7 +81,7 @@ class SummaryFragment : Fragment() {
     private fun subtitleText(pct: Int): CharSequence {
         val prefix = "正答率 "
         val pctStr = "$pct%"
-        val s = SpannableString("$prefix$pctStr ・ ネットワーク")
+        val s = SpannableString("$prefix$pctStr ・ ${viewModel.sessionCategoryName}")
         s.setSpan(ForegroundColorSpan(color(R.color.primary)), prefix.length, prefix.length + pctStr.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         s.setSpan(StyleSpan(android.graphics.Typeface.BOLD), prefix.length, prefix.length + pctStr.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         return s
