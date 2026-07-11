@@ -5,6 +5,8 @@
     <string name="percent_format" translatable="false">%1$d%%</string>
     <string name="progress_format" translatable="false">%1$d / %2$d</string>
     <string name="score_format" translatable="false">%1$d/%2$d</string>
+    <string name="difficulty_chip">難易度 : %1$s</string>
+    <string name="count_chip">%1$d問</string>
 
     <!-- verdict -->
     <string name="verdict_correct">正解</string>

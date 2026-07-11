@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -20,6 +22,14 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: QuizViewModel by activityViewModels()
 
+    /** 出題フィルタの選択肢。 */
+    private val difficulties = listOf("やさしい", "ふつう", "むずかしい")
+    private val counts = listOf(5, 10, 20)
+
+    /** 現在の選択。 */
+    private var selectedDifficulty = "ふつう"
+    private var selectedCount = 10
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -31,6 +41,37 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.bottomNav.selectedItemId = R.id.nav_home
         binding.buttonStart.setOnClickListener { startQuiz(categoryId = null) }
+
+        updateFilterChips()
+        binding.chipDifficulty.setOnClickListener { showDifficultyMenu(it as TextView) }
+        binding.chipCount.setOnClickListener { showCountMenu(it as TextView) }
+    }
+
+    private fun updateFilterChips() {
+        binding.chipDifficulty.text = getString(R.string.difficulty_chip, selectedDifficulty)
+        binding.chipCount.text = getString(R.string.count_chip, selectedCount)
+    }
+
+    private fun showDifficultyMenu(anchor: TextView) {
+        PopupMenu(requireContext(), anchor).apply {
+            difficulties.forEachIndexed { i, label -> menu.add(0, i, i, label) }
+            setOnMenuItemClickListener { item ->
+                selectedDifficulty = difficulties[item.itemId]
+                updateFilterChips()
+                true
+            }
+        }.show()
+    }
+
+    private fun showCountMenu(anchor: TextView) {
+        PopupMenu(requireContext(), anchor).apply {
+            counts.forEachIndexed { i, count -> menu.add(0, i, i, getString(R.string.count_chip, count)) }
+            setOnMenuItemClickListener { item ->
+                selectedCount = counts[item.itemId]
+                updateFilterChips()
+                true
+            }
+        }.show()
     }
 
     override fun onResume() {
@@ -66,7 +107,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun startQuiz(categoryId: String?) {
-        viewModel.start(requireContext(), categoryId)
+        viewModel.start(requireContext(), categoryId, count = selectedCount)
         findNavController().navigate(R.id.action_home_to_quiz)
     }
 
