@@ -9,14 +9,23 @@ import org.json.JSONObject
  */
 object QuizData {
 
-    /** ホーム画面に並べるカテゴリ（デザイン同様の6件）。 */
+    /** ホーム画面に並べるカテゴリ（応用情報の分野体系に準拠した順）。 */
     val HOME_CATEGORIES = listOf(
+        // テクノロジ系
         Category("base", "基礎理論", R.drawable.ic_cat_functions),
+        Category("algo", "アルゴリズムとプログラミング", R.drawable.ic_cat_code),
+        Category("cs", "コンピュータシステム", R.drawable.ic_cat_memory),
+        Category("db", "データベース", R.drawable.ic_cat_database),
         Category("net", "ネットワーク", R.drawable.ic_cat_lan),
         Category("sec", "セキュリティ", R.drawable.ic_cat_shield),
-        Category("db", "データベース", R.drawable.ic_cat_database),
-        Category("algo", "アルゴリズムとプログラミング", R.drawable.ic_cat_code),
+        Category("dev", "システム開発技術", R.drawable.ic_cat_build),
+        // マネジメント系
         Category("pm", "プロジェクトマネジメント", R.drawable.ic_cat_event_note),
+        Category("sm", "サービスマネジメント", R.drawable.ic_cat_autorenew),
+        Category("audit", "システム監査", R.drawable.ic_cat_fact_check),
+        // ストラテジ系
+        Category("st", "経営戦略・システム戦略", R.drawable.ic_cat_trending_up),
+        Category("legal", "企業と法務", R.drawable.ic_cat_gavel),
     )
 
     fun categoryName(categoryId: String): String =
@@ -29,6 +38,12 @@ object QuizData {
         "questions/base.json",
         "questions/algo.json",
         "questions/pm.json",
+        "questions/computer.json",
+        "questions/dev.json",
+        "questions/service.json",
+        "questions/audit.json",
+        "questions/strategy.json",
+        "questions/legal.json",
     )
 
     @Volatile
@@ -66,15 +81,8 @@ object QuizData {
         }
     }
 
-    private fun iconFor(categoryId: String): Int = when (categoryId) {
-        "base" -> R.drawable.ic_cat_functions
-        "net" -> R.drawable.ic_cat_lan
-        "sec" -> R.drawable.ic_cat_shield
-        "db" -> R.drawable.ic_cat_database
-        "algo" -> R.drawable.ic_cat_code
-        "pm" -> R.drawable.ic_cat_event_note
-        else -> R.drawable.ic_cat_functions
-    }
+    private fun iconFor(categoryId: String): Int =
+        HOME_CATEGORIES.firstOrNull { it.id == categoryId }?.icon ?: R.drawable.ic_cat_functions
 
     private fun org.json.JSONArray.toOptions(): List<Option> {
         val keys = listOf("ア", "イ", "ウ", "エ")
