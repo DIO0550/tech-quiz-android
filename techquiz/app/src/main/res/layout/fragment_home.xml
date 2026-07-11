@@ -89,12 +89,13 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/stat_overall_acc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="72%"
                             android:textColor="@color/on_surface"
                             android:textSize="19sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:text="72%" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -118,12 +119,13 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/stat_today"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="18/30"
                             android:textColor="@color/on_surface"
                             android:textSize="19sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:text="18/30" />
 
                         <TextView
                             android:layout_width="wrap_content"

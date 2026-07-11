@@ -11,21 +11,16 @@ object QuizData {
 
     /** ホーム画面に並べるカテゴリ（デザイン同様の6件）。 */
     val HOME_CATEGORIES = listOf(
-        Category("base", "基礎理論", R.drawable.ic_cat_functions, progress = 80, acc = 78),
-        Category("net", "ネットワーク", R.drawable.ic_cat_lan, progress = 88, acc = 81),
-        Category("sec", "セキュリティ", R.drawable.ic_cat_shield, progress = 44, acc = 58),
-        Category("db", "データベース", R.drawable.ic_cat_database, progress = 85, acc = 84),
-        Category("algo", "アルゴリズムとプログラミング", R.drawable.ic_cat_code, progress = 63, acc = 71),
-        Category("pm", "プロジェクトマネジメント", R.drawable.ic_cat_event_note, progress = 75, acc = 75),
+        Category("base", "基礎理論", R.drawable.ic_cat_functions),
+        Category("net", "ネットワーク", R.drawable.ic_cat_lan),
+        Category("sec", "セキュリティ", R.drawable.ic_cat_shield),
+        Category("db", "データベース", R.drawable.ic_cat_database),
+        Category("algo", "アルゴリズムとプログラミング", R.drawable.ic_cat_code),
+        Category("pm", "プロジェクトマネジメント", R.drawable.ic_cat_event_note),
     )
 
-    /** 結果サマリーの分野別正答率（デザイン同様）。 */
-    val SUMMARY_BREAKDOWN = listOf(
-        Breakdown("プロトコル", 100),
-        Breakdown("ルーティング", 83),
-        Breakdown("TCP/UDP", 75),
-        Breakdown("無線・物理層", 60),
-    )
+    fun categoryName(categoryId: String): String =
+        HOME_CATEGORIES.firstOrNull { it.id == categoryId }?.name ?: categoryId
 
     private val QUESTION_FILES = listOf(
         "questions/network.json",
@@ -36,12 +31,22 @@ object QuizData {
         "questions/pm.json",
     )
 
+    @Volatile
+    private var cachedQuestions: List<Question>? = null
+
     fun loadQuestions(context: Context): List<Question> {
-        return QUESTION_FILES.flatMap { path ->
+        cachedQuestions?.let { return it }
+        val loaded = QUESTION_FILES.flatMap { path ->
             val json = context.assets.open(path).bufferedReader().use { it.readText() }
             JSONObject(json).getJSONArray("questions").toQuestions()
         }
+        cachedQuestions = loaded
+        return loaded
     }
+
+    /** カテゴリ別の総問題数。 */
+    fun questionCountByCategory(context: Context): Map<String, Int> =
+        loadQuestions(context).groupingBy { it.categoryId }.eachCount()
 
     private fun org.json.JSONArray.toQuestions(): List<Question> {
         val questions = this
@@ -49,6 +54,7 @@ object QuizData {
             val item = questions.getJSONObject(index)
             Question(
                 id = item.getString("id"),
+                categoryId = item.getString("categoryId"),
                 category = item.getString("category"),
                 categoryIcon = iconFor(item.getString("categoryId")),
                 text = item.getString("text"),

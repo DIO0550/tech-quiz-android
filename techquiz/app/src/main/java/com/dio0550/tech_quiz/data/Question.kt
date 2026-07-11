@@ -11,6 +11,7 @@ data class Point(val term: String, val desc: String)
 /** 1問のデータ。explanationBody 内の強調語は {kw}…{/kw} で囲む。 */
 data class Question(
     val id: String,
+    val categoryId: String,
     val category: String,
     @DrawableRes val categoryIcon: Int,
     val text: String,
@@ -20,13 +21,11 @@ data class Question(
     val points: List<Point>,
 )
 
-/** ホームのカテゴリ行。progress = 学習進捗(%)、acc = 正答率(%)。 */
+/** ホームのカテゴリ行。進捗・正答率は ProgressStore から実データを表示する。 */
 data class Category(
     val id: String,
     val name: String,
     @DrawableRes val icon: Int,
-    val progress: Int,
-    val acc: Int,
 )
 
 /** 結果サマリーの分野別正答率。 */

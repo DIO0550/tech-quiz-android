@@ -9,10 +9,9 @@
     <!-- verdict -->
     <string name="verdict_correct">正解</string>
     <string name="verdict_wrong">不正解</string>
-    <string name="verdict_meta_correct">0:38 ・ +10pt</string>
-    <string name="verdict_meta_wrong">0:38 ・ +0pt</string>
+    <string name="verdict_meta_format" translatable="false">%1$s ・ +%2$dpt</string>
 
-    <!-- summary (静的な表示値) -->
-    <string name="summary_time" translatable="false">7:42</string>
-    <string name="summary_avg">46秒</string>
+    <!-- summary -->
+    <string name="time_format" translatable="false">%1$d:%2$02d</string>
+    <string name="seconds_format">%1$d秒</string>
 </resources>
