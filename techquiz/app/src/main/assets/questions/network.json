@@ -155,16 +155,16 @@
       "explanationBody": "TCPは3ウェイハンドシェイクで接続を確立する{kw}コネクション型{/kw}プロトコルで、再送制御や順序制御により信頼性を確保する。",
       "points": [
         {
-          "term": "イ",
-          "desc": "UDPの説明（コネクションレス）。"
+          "term": "UDP",
+          "desc": "コネクションレスで高速だが、信頼性は保証しない(選択肢イ)。"
         },
         {
-          "term": "ウ",
-          "desc": "ブロードキャスト／マルチキャストの特徴。"
+          "term": "マルチキャスト",
+          "desc": "1対多の配信方式。TCPは1対1の通信(選択肢ウ)。"
         },
         {
-          "term": "エ",
-          "desc": "IP（ルータ）が担う経路制御の説明。"
+          "term": "経路制御",
+          "desc": "IP(ルータ)が担う機能で、TCPの役割ではない(選択肢エ)。"
         }
       ]
     },
@@ -509,7 +509,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "IPv6アドレスのビット長として正しいものはどれか。",
-      "options": ["32ビット", "64ビット", "128ビット", "256ビット"],
+      "options": [
+        "32ビット",
+        "64ビット",
+        "128ビット",
+        "256ビット"
+      ],
       "correct": 2,
       "explanationBody": "{kw}IPv6{/kw}アドレスは{kw}128ビット{/kw}で構成され、IPv4の32ビットと比べて圧倒的に広いアドレス空間を持つ。表記は16ビットごとにコロンで区切った16進数で行う。",
       "points": [
@@ -532,7 +537,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "イーサネット(有線LAN)で用いられてきたアクセス制御方式はどれか。",
-      "options": ["CSMA/CA", "CSMA/CD", "トークンパッシング", "TDMA"],
+      "options": [
+        "CSMA/CA",
+        "CSMA/CD",
+        "トークンパッシング",
+        "TDMA"
+      ],
       "correct": 1,
       "explanationBody": "{kw}CSMA/CD{/kw}は、送信前に回線の使用状況を確認し、衝突を検出したら再送する方式で、半二重イーサネットで用いられた。",
       "points": [
@@ -555,7 +565,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "リンクステート型のルーティングプロトコルはどれか。",
-      "options": ["RIP", "BGP", "OSPF", "ARP"],
+      "options": [
+        "RIP",
+        "BGP",
+        "OSPF",
+        "ARP"
+      ],
       "correct": 2,
       "explanationBody": "{kw}OSPF{/kw}は{kw}リンクステート型{/kw}のルーティングプロトコルで、各ルータがネットワーク全体のトポロジ情報を持ち、ダイクストラ法で最短経路を計算する。",
       "points": [
@@ -578,7 +593,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "スイッチ間でループが発生するのを防ぐために用いられるプロトコルはどれか。",
-      "options": ["STP", "VRRP", "LACP", "GVRP"],
+      "options": [
+        "STP",
+        "VRRP",
+        "LACP",
+        "GVRP"
+      ],
       "correct": 0,
       "explanationBody": "{kw}STP(スパニングツリープロトコル){/kw}は、L2ネットワーク内でループを検出し、冗長な経路をブロックして論理的にツリー構造を保つ。",
       "points": [
@@ -601,7 +621,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "ネットワーク層(IP層)で暗号化と認証を提供するプロトコルはどれか。",
-      "options": ["SSL/TLS", "IPsec", "SSH", "S/MIME"],
+      "options": [
+        "SSL/TLS",
+        "IPsec",
+        "SSH",
+        "S/MIME"
+      ],
       "correct": 1,
       "explanationBody": "{kw}IPsec{/kw}はネットワーク層で動作し、AHやESPを用いてIPパケットの認証と暗号化を提供する。VPNの構築によく用いられる。",
       "points": [
@@ -624,7 +649,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "ネットワーク経由でコンピュータの時刻を同期させるプロトコルはどれか。",
-      "options": ["SNMP", "NTP", "SMTP", "SNTP"],
+      "options": [
+        "SNMP",
+        "NTP",
+        "SMTP",
+        "SNTP"
+      ],
       "correct": 1,
       "explanationBody": "{kw}NTP(Network Time Protocol){/kw}は、階層化されたタイムサーバ群から正確な時刻を取得し、ネットワーク上の機器の時刻を同期させるプロトコルである。",
       "points": [
@@ -647,7 +677,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "無線LANのセキュリティ規格として最新の方式はどれか。",
-      "options": ["WEP", "WPA", "WPA2", "WPA3"],
+      "options": [
+        "WEP",
+        "WPA",
+        "WPA2",
+        "WPA3"
+      ],
       "correct": 3,
       "explanationBody": "{kw}WPA3{/kw}はWi-Fi Allianceが定めた最新の無線LANセキュリティ規格で、SAEによる強固な認証や個別データ暗号化など、WPA2より高い安全性を提供する。",
       "points": [
@@ -670,7 +705,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "プライベートIPアドレスの範囲として正しいものはどれか。",
-      "options": ["10.0.0.0/8", "127.0.0.0/8", "169.254.0.0/16", "224.0.0.0/4"],
+      "options": [
+        "10.0.0.0/8",
+        "127.0.0.0/8",
+        "169.254.0.0/16",
+        "224.0.0.0/4"
+      ],
       "correct": 0,
       "explanationBody": "{kw}プライベートIPアドレス{/kw}はRFC1918で定義され、{kw}10.0.0.0/8{/kw}、172.16.0.0/12、192.168.0.0/16が該当する。インターネット上で直接利用できない。",
       "points": [
@@ -693,7 +733,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "複数のサーバに処理を振り分けて負荷を平準化する機器はどれか。",
-      "options": ["ロードバランサ", "リピータ", "ブリッジ", "プロキシサーバ"],
+      "options": [
+        "ロードバランサ",
+        "リピータ",
+        "ブリッジ",
+        "プロキシサーバ"
+      ],
       "correct": 0,
       "explanationBody": "{kw}ロードバランサ{/kw}はクライアントからの要求を複数のサーバに分散して処理させ、可用性とスループットを向上させる装置である。L4/L7の方式がある。",
       "points": [
@@ -716,7 +761,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "コンテンツを地理的に分散したサーバにキャッシュし、ユーザに近いサーバから配信する仕組みはどれか。",
-      "options": ["DNSラウンドロビン", "CDN", "P2P", "SDN"],
+      "options": [
+        "DNSラウンドロビン",
+        "CDN",
+        "P2P",
+        "SDN"
+      ],
       "correct": 1,
       "explanationBody": "{kw}CDN(Content Delivery Network){/kw}は世界各地のエッジサーバにコンテンツをキャッシュし、ユーザに最も近いサーバから配信することで遅延と負荷を低減する。",
       "points": [
@@ -739,7 +789,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "ネットワーク機器の監視・管理に用いられるプロトコルはどれか。",
-      "options": ["SMTP", "SNMP", "SSH", "NTP"],
+      "options": [
+        "SMTP",
+        "SNMP",
+        "SSH",
+        "NTP"
+      ],
       "correct": 1,
       "explanationBody": "{kw}SNMP(Simple Network Management Protocol){/kw}はルータやスイッチなどのネットワーク機器の状態を監視・管理するプロトコルで、UDP161番ポートを使用する。",
       "points": [
@@ -762,7 +817,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "暗号化された通信路を用いてリモートホストに安全にログインできるプロトコルはどれか。",
-      "options": ["Telnet", "FTP", "SSH", "HTTP"],
+      "options": [
+        "Telnet",
+        "FTP",
+        "SSH",
+        "HTTP"
+      ],
       "correct": 2,
       "explanationBody": "{kw}SSH(Secure Shell){/kw}は通信を暗号化してリモートホストにログインし、コマンド実行やファイル転送を安全に行えるプロトコルで、TCP22番ポートを使用する。",
       "points": [
@@ -785,7 +845,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "インターネットを構成するAS(自律システム)間で経路情報を交換するルーティングプロトコルはどれか。",
-      "options": ["RIP", "OSPF", "EIGRP", "BGP"],
+      "options": [
+        "RIP",
+        "OSPF",
+        "EIGRP",
+        "BGP"
+      ],
       "correct": 3,
       "explanationBody": "{kw}BGP(Border Gateway Protocol){/kw}は異なるAS間で経路情報を交換する経路制御プロトコルで、インターネットのバックボーンを支える。",
       "points": [
@@ -808,7 +873,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "メールサーバ上のメールを保存したまま閲覧でき、複数の端末から同じメールボックスを操作するのに適したプロトコルはどれか。",
-      "options": ["POP3", "IMAP", "SMTP", "MIME"],
+      "options": [
+        "POP3",
+        "IMAP",
+        "SMTP",
+        "MIME"
+      ],
       "correct": 1,
       "explanationBody": "{kw}IMAP(Internet Message Access Protocol){/kw}はメールをサーバ上で管理するため、PCやスマートフォンなど複数端末から同じ受信箱に同期してアクセスできる。",
       "points": [
@@ -831,7 +901,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "イーサネットなどのデータリンクで1フレームに格納できるペイロードの最大サイズを示すものはどれか。",
-      "options": ["MSS", "MTU", "RTT", "TTL"],
+      "options": [
+        "MSS",
+        "MTU",
+        "RTT",
+        "TTL"
+      ],
       "correct": 1,
       "explanationBody": "{kw}MTU(Maximum Transmission Unit){/kw}は1回の転送で送信可能な最大データサイズを表し、標準イーサネットでは1500バイトである。これを超える場合は分割(フラグメンテーション)される。",
       "points": [
@@ -854,7 +929,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "DNSクエリをHTTPSの通信路に載せて暗号化し、プライバシー保護を図る技術はどれか。",
-      "options": ["DNSSEC", "DoT", "DoH", "DNSAMP"],
+      "options": [
+        "DNSSEC",
+        "DoT",
+        "DoH",
+        "DNSAMP"
+      ],
       "correct": 2,
       "explanationBody": "{kw}DoH(DNS over HTTPS){/kw}はDNSクエリをHTTPS上で送受信することで、盗聴や改ざんを防ぎ、利用者のプライバシーを保護する。",
       "points": [
@@ -905,7 +985,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "複数の物理リンクを論理的に1本の高帯域リンクとして束ねる技術と、その制御プロトコルとして用いられるものはどれか。",
-      "options": ["STP", "VRRP", "LACP", "HSRP"],
+      "options": [
+        "STP",
+        "VRRP",
+        "LACP",
+        "HSRP"
+      ],
       "correct": 2,
       "explanationBody": "{kw}LACP(Link Aggregation Control Protocol){/kw}はIEEE 802.3adで規定され、複数の物理リンクを束ねるリンクアグリゲーションの制御に用いられる。帯域拡張と冗長化を同時に実現できる。",
       "points": [
@@ -928,7 +1013,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "有線・無線LANにおいて、ポート単位でユーザを認証してからネットワーク接続を許可する規格はどれか。",
-      "options": ["IEEE 802.1X", "IEEE 802.11ac", "IEEE 802.3", "IEEE 802.1Q"],
+      "options": [
+        "IEEE 802.1X",
+        "IEEE 802.11ac",
+        "IEEE 802.3",
+        "IEEE 802.1Q"
+      ],
       "correct": 0,
       "explanationBody": "{kw}IEEE 802.1X{/kw}はクライアント、認証装置(スイッチ/AP)、認証サーバ(RADIUS)から構成され、EAPを用いてポート単位の認証を行う。認証成功までネットワーク利用は許可されない。",
       "points": [
@@ -951,7 +1041,12 @@
       "category": "ネットワーク",
       "categoryId": "net",
       "text": "インターネットと内部ネットワークの間に設けられ、外部公開サーバを配置する緩衝地帯として機能するセグメントはどれか。",
-      "options": ["VLAN", "DMZ", "VPN", "NAT"],
+      "options": [
+        "VLAN",
+        "DMZ",
+        "VPN",
+        "NAT"
+      ],
       "correct": 1,
       "explanationBody": "{kw}DMZ(DeMilitarized Zone){/kw}はファイアウォールによって内部LANから隔離された公開セグメントで、Webサーバやメールサーバなどを置く。外部からの侵入が内部に直接波及しないようにする。",
       "points": [
